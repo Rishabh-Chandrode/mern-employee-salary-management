@@ -5,11 +5,11 @@ import PotonganGaji from "../models/PotonganGajiModel.js";
 import moment from "moment";
 import "moment/locale/id.js";
 
-// Return all attendance data
+// method untuk menampilkan semua Data Kehadiran
 export const viewDataKehadiran = async (req, res) => {
   let resultDataKehadiran = [];
   try {
-    // Fetch attendance data
+    // Get data kehadiran
     const data_Kehadiran = await DataKehadiran.findAll({
       attributes: [
         "id",
@@ -58,7 +58,7 @@ export const viewDataKehadiran = async (req, res) => {
   }
 };
 
-// Return attendance data by ID
+// method untuk menampilkan Data Kehadiran by ID
 export const viewDataKehadiranByID = async (req, res) => {
   try {
     const dataKehadiran = await DataKehadiran.findOne({
@@ -84,7 +84,7 @@ export const viewDataKehadiranByID = async (req, res) => {
   }
 };
 
-// Create attendance data
+// method untuk menambah data kehadiran
 export const createDataKehadiran = async (req, res) => {
   const {
     nik,
@@ -122,15 +122,15 @@ export const createDataKehadiran = async (req, res) => {
     });
 
     if (!data_nama_pegawai) {
-      return res.status(404).json({ msg: "Employee name was not found" });
+      return res.status(404).json({ msg: "Data nama pegawai tidak ditemukan" });
     }
 
     if (!data_nama_jabatan) {
-      return res.status(404).json({ msg: "Position name was not found" });
+      return res.status(404).json({ msg: "Data nama jabatan tidak ditemukan" });
     }
 
     if (!data_nik_pegawai) {
-      return res.status(404).json({ msg: "NIK data was not found" });
+      return res.status(404).json({ msg: "Data nik tidak ditemukan" });
     }
 
     if (!nama_sudah_ada) {
@@ -145,16 +145,16 @@ export const createDataKehadiran = async (req, res) => {
         sakit: sakit,
         alpha: alpha,
       });
-      res.json({ msg: "Attendance data created successfully" });
+      res.json({ msg: "Tambah Data Kehadiran Berhasil" });
     } else {
-      res.status(400).json({ msg: "The employee name already exists" });
+      res.status(400).json({ msg: "Data nama sudah ada" });
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-// Update attendance data
+// method untuk update data kehadiran
 export const updateDataKehadiran = async (req, res) => {
   try {
     await DataKehadiran.update(req.body, {
@@ -162,13 +162,13 @@ export const updateDataKehadiran = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.status(200).json({ msg: "Attendance data updated successfully" });
+    res.status(200).json({ msg: "Data kehadiran berhasil diupdate" });
   } catch (error) {
     console.log(error.msg);
   }
 };
 
-// Delete attendance data
+// method untuk delete data kehadiran
 export const deleteDataKehadiran = async (req, res) => {
   try {
     await DataKehadiran.destroy({
@@ -176,13 +176,13 @@ export const deleteDataKehadiran = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.status(200).json({ msg: "Data deleted successfully" });
+    res.status(200).json({ msg: "Delete data berhasil" });
   } catch (error) {
     console.log(error.msg);
   }
 };
 
-// Create salary deduction data
+// method untuk create data potongan gaji
 export const createDataPotonganGaji = async (req, res) => {
   const { id, potongan, jml_potongan } = req.body;
   try {
@@ -192,21 +192,21 @@ export const createDataPotonganGaji = async (req, res) => {
       },
     });
     if (nama_potongan) {
-      res.status(400).json({ msg: "Deduction data already exists" });
+      res.status(400).json({ msg: "Data potongan sudah ada !" });
     } else {
       await PotonganGaji.create({
         id: id,
         potongan: potongan,
         jml_potongan: jml_potongan.toLocaleString(),
       });
-      res.json({ msg: "Salary deduction data created successfully" });
+      res.json({ msg: "Tambah Data Potongan Gaji Berhasil" });
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-// Return all deduction data
+// method untuk menampilkan semua Data Potongan
 export const viewDataPotongan = async (req, res) => {
   try {
     const dataPotongan = await PotonganGaji.findAll({
@@ -218,7 +218,7 @@ export const viewDataPotongan = async (req, res) => {
   }
 };
 
-// Return deduction data by ID
+// method untuk menampilkan Data Potongan By ID
 export const viewDataPotonganByID = async (req, res) => {
   try {
     const dataPotongan = await PotonganGaji.findOne({
@@ -233,7 +233,7 @@ export const viewDataPotonganByID = async (req, res) => {
   }
 };
 
-// Update deduction data
+// method untuk update Data Potongan
 export const updateDataPotongan = async (req, res) => {
   try {
     await PotonganGaji.update(req.body, {
@@ -241,13 +241,13 @@ export const updateDataPotongan = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.status(200).json({ message: "Deduction data updated successfully" });
+    res.status(200).json({ message: "Data Potongan berhasil diupdate" });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-// Delete deduction data
+// method untuk delete data potongan
 export const deleteDataPotongan = async (req, res) => {
   try {
     await PotonganGaji.destroy({
@@ -255,20 +255,20 @@ export const deleteDataPotongan = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.status(200).json({ message: "Data deleted successfully" });
+    res.status(200).json({ message: "Delete data berhasil" });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-// Build salary data from employee, position, attendance, and deduction records
+// method untuk mengambil data gaji pegawai (data pegawai + data jabatan + data kehadiran + data potongan)
 
-// Fetch employee data
+// method untuk mengambil data pegawai :
 export const getDataPegawai = async () => {
   let resultDataPegawai = [];
 
   try {
-    // Fetch employee data
+    // Get data pegawai:
     const data_pegawai = await DataPegawai.findAll({
       attributes: ["id", "nik", "nama_pegawai", "jenis_kelamin", "jabatan"],
       distinct: true,

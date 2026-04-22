@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import "./About.css";
 import aboutImg from '../../assets/images/aboutSipeka.svg'
-// import aboutImg from '../../Assets/images/aboutSipeka.svg'
 import '../../shared/Shared.css'
 import { BottomLine } from "../../components/atoms";
 import { Footer, Navbar } from "../../components";
@@ -27,9 +26,9 @@ const About = () => {
                                 transition: { duration: 1, type: "spring" },
                             }}
                         >
-                            <h3 className="text-neutral text-center dark:text-white">What is SiPeKa?</h3>
+                            <h3 className="text-neutral text-center dark:text-white">Apa itu SiPeKa ?</h3>
                             <h1 className="text-4xl font-semibold drop-shadow-md text-center text-accent dark:text-white">
-                                About <span className="text-primary">Us</span>
+                                Tentang <span className="text-primary">Kami</span>
                             </h1>
                             <BottomLine />
                         </motion.div>
@@ -59,14 +58,14 @@ const About = () => {
                                 }}
                             >
                                 <p className="font-medium text-center translate-y-[-60%] sm:translate-y-[-0%] sm:mb-2 md:text-left dark:text-white">
-                                    SiPeKa (Employee Payroll System) is a platform used by companies to manage employee payroll efficiently and accurately.
-                                    The system plays a central role in automating payroll-related work such as salary calculation, attendance processing, and employee wage payments.
+                                    SiPeKa ( Sistem Penggajian Karyawan ) adalah suatu sistem yang digunakan oleh perusahaan untuk mengelola proses penggajian karyawan secara efisien dan akurat.
+                                    Sistem ini memainkan peran kunci dalam mengotomatisasi berbagai tugas terkait penggajian, seperti perhitungan gaji, pemrosesan absensi, dan pembayaran upah karyawan.
                                 </p>
                                 <br />
                                 <p className="font-medium text-center translate-y-[-50%] sm:translate-y-[-0%] sm:mb-2 md:text-left dark:text-white">
-                                    In SiPeKa, employee information such as personal details, position, and salary level is stored centrally.
-                                    Each month, the system collects employee attendance data and calculates payroll based on the available information.
-                                    This includes factors such as working hours, leave, overtime, and relevant deductions.
+                                    Dalam SiPeKa, informasi karyawan seperti data pribadi, jabatan, dan tingkat gaji disimpan secara terpusat.
+                                    Setiap bulan, sistem akan mengambil data absensi karyawan dan melakukan perhitungan gaji berdasarkan informasi yang ada.
+                                    Hal ini mencakup faktor-faktor seperti jam kerja, cuti, lembur, dan potongan yang relevan.
                                 </p>
                             </motion.div>
                         </div>

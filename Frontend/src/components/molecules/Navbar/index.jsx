@@ -82,14 +82,6 @@ export default function Navbar() {
                         <DarkModeSwitcher />
                         <Link
                             className="mx-4"
-                            to={'/register'}
-                        >
-                            <ButtonThree>
-                                <span>Register</span>
-                            </ButtonThree>
-                        </Link>
-                        <Link
-                            className="mx-4"
                             to={'/login'}
                         >
                             <ButtonThree>
@@ -133,15 +125,6 @@ export default function Navbar() {
                                 <div className=' my-4 mr-3 m-4' >
                                     <DarkModeSwitcher />
                                 </div>
-                                <Link
-                                    className="flex items-center my-4 mr-6 m-6"
-                                    to={'/register'}
-                                >
-                                    <ButtonThree
-                                        className="primary-button w-full text-white">
-                                        <span>Register</span>
-                                    </ButtonThree>
-                                </Link>
                                 <Link
                                     className="flex items-center my-4 mr-6 m-6"
                                     to={'/login'}

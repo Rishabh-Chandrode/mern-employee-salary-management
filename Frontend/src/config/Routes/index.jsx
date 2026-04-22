@@ -5,7 +5,6 @@ import Home from '../../pages/Home';
 import About from '../../pages/About';
 import Contact from '../../pages/Contact';
 import Login from '../../pages/Login';
-import Register from '../../pages/Register';
 import Dashboard from '../../pages/Dashboard';
 import {
   FormAddDataJabatan,
@@ -42,21 +41,14 @@ const AppRoutes = () => {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/tentang' element={<About />} />
-      <Route path='/about' element={<About />} />
       <Route path='/kontak' element={<Contact />} />
-      <Route path='/contact' element={<Contact />} />
       <Route path='/login' element={<Login />} />
-      <Route path='/register' element={<Register />} />
       <Route path='/dashboard' element={<Dashboard />} />
 
-      {/* Admin routes */}
-      {/* Admin master data */}
+      {/* Route Admin */}
+      {/* Master Data Admin */}
       <Route
         path='/data-pegawai'
-        element={<DataPegawai />}
-      />
-      <Route
-        path='/employees'
         element={<DataPegawai />}
       />
       <Route
@@ -64,15 +56,7 @@ const AppRoutes = () => {
         element={<FormAddDataPegawai />}
       />
       <Route
-        path='/employees/form/add'
-        element={<FormAddDataPegawai />}
-      />
-      <Route
         path='/data-pegawai/form-data-pegawai/edit/:id'
-        element={<FormEditDataPegawai />}
-      />
-      <Route
-        path='/employees/form/edit/:id'
         element={<FormEditDataPegawai />}
       />
       <Route
@@ -80,33 +64,17 @@ const AppRoutes = () => {
         element={<DataJabatan />}
       />
       <Route
-        path='/positions'
-        element={<DataJabatan />}
-      />
-      <Route
         path='/data-jabatan/form-data-jabatan/add'
-        element={<FormAddDataJabatan />}
-      />
-      <Route
-        path='/positions/form/add'
         element={<FormAddDataJabatan />}
       />
       <Route
         path='/data-jabatan/form-data-jabatan/edit/:id'
         element={<FormEditDataJabatan />}
       />
-      <Route
-        path='/positions/form/edit/:id'
-        element={<FormEditDataJabatan />}
-      />
 
-      {/* Admin transactions */}
+      {/* Transaksi Admin */}
       <Route
         path='/data-kehadiran'
-        element={<DataKehadiran />}
-      />
-      <Route
-        path='/attendance'
         element={<DataKehadiran />}
       />
       <Route
@@ -114,15 +82,7 @@ const AppRoutes = () => {
         element={<FormAddDataKehadiran />}
       />
       <Route
-        path='/attendance/form/add'
-        element={<FormAddDataKehadiran />}
-      />
-      <Route
         path='/data-kehadiran/form-data-kehadiran/edit/:id'
-        element={<FormEditDataKehadiran />}
-      />
-      <Route
-        path='/attendance/form/edit/:id'
         element={<FormEditDataKehadiran />}
       />
       <Route
@@ -130,27 +90,13 @@ const AppRoutes = () => {
         element={<DataPotongan />}
       />
       <Route
-        path='/deductions'
-        element={<DataPotongan />}
-      />
-      <Route
         path='/data-potongan/form-data-potongan/add'
-        element={<FormAddDataPotongan />} />
-      <Route
-        path='/deductions/form/add'
         element={<FormAddDataPotongan />} />
       <Route
         path='/data-potongan/form-data-potongan/edit/:id'
         element={<FormEditDataPotongan />} />
       <Route
-        path='/deductions/form/edit/:id'
-        element={<FormEditDataPotongan />} />
-      <Route
         path='/data-gaji'
-        element={<DataGaji />}
-      />
-      <Route
-        path='/salaries'
         element={<DataGaji />}
       />
       <Route
@@ -158,25 +104,13 @@ const AppRoutes = () => {
         element={<DetailDataGaji />}
       />
       <Route
-        path='/salaries/details/name/:name'
-        element={<DetailDataGaji />}
-      />
-      <Route
         path='/data-gaji/cetak-gaji/slip-gaji/name/:name'
         element={<PrintPdfSlipGaji />}
       />
-      <Route
-        path='/salaries/print/salary-slip/name/:name'
-        element={<PrintPdfSlipGaji />}
-      />
 
-      {/* Admin reports */}
+      {/* Laporan Admin */}
       <Route
         path='/laporan/gaji'
-        element={<LaporanGaji />}
-      />
-      <Route
-        path='/reports/salary'
         element={<LaporanGaji />}
       />
       <Route
@@ -184,15 +118,7 @@ const AppRoutes = () => {
         element={<PrintPdfLaporanGaji />}
       />
       <Route
-        path='/reports/salary/print-page'
-        element={<PrintPdfLaporanGaji />}
-      />
-      <Route
         path='/laporan/absensi'
-        element={<LaporanAbsensi />}
-      />
-      <Route
-        path='/reports/attendance'
         element={<LaporanAbsensi />}
       />
       <Route
@@ -200,44 +126,24 @@ const AppRoutes = () => {
         element={<PrintPdfLaporanAbsensi />}
       />
       <Route
-        path='/reports/attendance/print-page'
-        element={<PrintPdfLaporanAbsensi />}
-      />
-      <Route
         path='/laporan/slip-gaji'
-        element={<SlipGaji />}
-      />
-      <Route
-        path='/reports/salary-slip'
         element={<SlipGaji />}
       />
       <Route
         path='/laporan/slip-gaji/print-page'
         element={<PrintPdfSlipGaji />}
       />
-      <Route
-        path='/reports/salary-slip/print-page'
-        element={<PrintPdfSlipGaji />}
-      />
 
-      {/* Admin settings */}
+      {/* Pengaturan Admin */}
       <Route
         path='/ubah-password'
         element={<UbahPasswordAdmin />}
       />
-      <Route
-        path='/change-password'
-        element={<UbahPasswordAdmin />}
-      />
 
-      {/* Employee routes */}
-      {/* Employee salary dashboard */}
+      {/* Route Pegawai */}
+      {/* Dashboard Data Gaji Pegawai */}
       <Route
         path='/data-gaji-pegawai'
-        element={<DataGajiPegawai />}
-      />
-      <Route
-        path='/employee-salaries'
         element={<DataGajiPegawai />}
       />
       <Route
@@ -245,19 +151,11 @@ const AppRoutes = () => {
         element={<PrintPdfDataGajiPegawai />}
       />
       <Route
-        path='/employee-salaries/print-page'
-        element={<PrintPdfDataGajiPegawai />}
-      />
-      <Route
         path='/ubah-password-pegawai'
         element={<UbahPasswordPegawai />}
       />
-      <Route
-        path='/employee/change-password'
-        element={<UbahPasswordPegawai />}
-      />
 
-      {/* 404 route */}
+      {/* Route Not Found 404 */}
       <Route
         path="*"
         element={<NotFound />}

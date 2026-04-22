@@ -2,7 +2,7 @@ import DataPegawai from "../models/DataPegawaiModel.js";
 import argon2 from "argon2";
 import path from "path";
 
-// Return all employee data
+// menampilkan semua data Pegawai
 export const getDataPegawai = async (req, res) => {
     try {
         const response = await DataPegawai.findAll({
@@ -18,7 +18,7 @@ export const getDataPegawai = async (req, res) => {
     }
 }
 
-// Find employee data by ID
+// method untuk mencari data Pegawai berdasarkan ID
 export const getDataPegawaiByID = async (req, res) => {
     try {
         const response = await DataPegawai.findOne({
@@ -34,14 +34,14 @@ export const getDataPegawaiByID = async (req, res) => {
         if (response) {
             res.status(200).json(response);
         } else {
-            res.status(404).json({ msg: 'Employee data with that ID was not found' })
+            res.status(404).json({ msg: 'Data pegawai dengan ID tersebut tidak ditemukan' })
         }
     } catch (error) {
         res.status(500).json({ msg: error.message });
     }
 }
 
-// Find employee data by NIK
+// method untuk mencari data pegawai berdasarkan NIK
 export const getDataPegawaiByNik = async (req, res) => {
     try {
         const response = await DataPegawai.findOne({
@@ -57,7 +57,7 @@ export const getDataPegawaiByNik = async (req, res) => {
         if (response) {
             res.status(200).json(response);
         } else {
-            res.status(404).json({ msg: 'Employee data with that NIK was not found' })
+            res.status(404).json({ msg: 'Data pegawai dengan NIK tersebut tidak ditemukan' })
         }
     } catch (error) {
         res.status(500).json({ msg: error.message });
@@ -65,7 +65,7 @@ export const getDataPegawaiByNik = async (req, res) => {
 }
 
 
-// Find employee data by name
+// method untuk mencari data pegawai berdasarkan Nama
 export const getDataPegawaiByName = async (req, res) => {
     try {
         const response = await DataPegawai.findOne({
@@ -81,14 +81,14 @@ export const getDataPegawaiByName = async (req, res) => {
         if (response) {
             res.status(200).json(response);
         } else {
-            res.status(404).json({ msg: 'Employee data with that name was not found' })
+            res.status(404).json({ msg: 'Data pegawai dengan Nama tersebut tidak ditemukan' })
         }
     } catch (error) {
         res.status(500).json({ msg: error.message });
     }
 }
 
-// Create employee data
+//  method untuk tambah data Pegawai
 export const createDataPegawai = async (req, res) => {
     const {
         nik, nama_pegawai,
@@ -98,11 +98,11 @@ export const createDataPegawai = async (req, res) => {
     } = req.body;
 
     if (password !== confPassword) {
-        return res.status(400).json({ msg: "Password and password confirmation do not match" });
+        return res.status(400).json({ msg: "Password dan Konfirmasi Password Tidak Cocok" });
     }
 
     if (!req.files || !req.files.photo) {
-        return res.status(400).json({ msg: "Photo upload failed. Please upload the photo again" });
+        return res.status(400).json({ msg: "Upload Foto Gagal Silahkan Upload Foto Ulang" });
     }
 
     const file = req.files.photo;
@@ -113,11 +113,11 @@ export const createDataPegawai = async (req, res) => {
     const allowedTypes = ['.png', '.jpg', '.jpeg'];
 
     if (!allowedTypes.includes(ext.toLowerCase())) {
-        return res.status(422).json({ msg: "Photo file format is not supported" });
+        return res.status(422).json({ msg: "File Foto Tidak Sesuai Dengan Format" });
     }
 
     if (fileSize > 2000000) {
-        return res.status(422).json({ msg: "Image size must be less than 2 MB" });
+        return res.status(422).json({ msg: "Ukuran Gambar Harus Kurang Dari 2 MB" });
     }
 
     file.mv(`./public/images/${fileName}`, async (err) => {
@@ -142,7 +142,7 @@ export const createDataPegawai = async (req, res) => {
                 hak_akses: hak_akses
             });
 
-            res.status(201).json({ success: true, message: "Registration successful" });
+            res.status(201).json({ success: true, message: "Registrasi Berhasil" });
         } catch (error) {
             console.log(error.message);
             res.status(500).json({ success: false, message: error.message });
@@ -151,7 +151,7 @@ export const createDataPegawai = async (req, res) => {
 };
 
 
-// Update employee data
+// method untuk update data Pegawai
 export const updateDataPegawai = async (req, res) => {
     const pegawai = await DataPegawai.findOne({
         where: {
@@ -159,7 +159,7 @@ export const updateDataPegawai = async (req, res) => {
         }
     });
 
-    if (!pegawai) return res.staus(404).json({ msg: "Employee data not found" });
+    if (!pegawai) return res.staus(404).json({ msg: "Data pegawai tidak ditemukan" });
     const {
         nik, nama_pegawai,
         username, jenis_kelamin,
@@ -182,13 +182,13 @@ export const updateDataPegawai = async (req, res) => {
                 id: pegawai.id
             }
         });
-        res.status(200).json({ msg: "Employee data updated successfully" });
+        res.status(200).json({ msg: "Data Pegawai Berhasil di Perbarui" });
     } catch (error) {
         res.status(400).json({ msg: error.message });
     }
 }
 
-// Update an employee password
+// Method untuk update password Pegawai
 export const changePasswordAdmin = async (req, res) => {
     const pegawai = await DataPegawai.findOne({
         where: {
@@ -196,12 +196,12 @@ export const changePasswordAdmin = async (req, res) => {
         }
     });
 
-    if (!pegawai) return res.status(404).json({ msg: "Employee data not found" });
+    if (!pegawai) return res.status(404).json({ msg: "Data pegawai tidak ditemukan" });
 
 
     const { password, confPassword } = req.body;
 
-    if (password !== confPassword) return res.status(400).json({ msg: "Password and password confirmation do not match" });
+    if (password !== confPassword) return res.status(400).json({ msg: "Password dan Konfirmasi Password Tidak Cocok" });
 
     try {
         if (pegawai.hak_akses === "pegawai") {
@@ -218,7 +218,7 @@ export const changePasswordAdmin = async (req, res) => {
                 }
             );
 
-            res.status(200).json({ msg: "Employee password updated successfully" });
+            res.status(200).json({ msg: "Password Pegawai Berhasil di Perbarui" });
         } else {
             res.status(403).json({ msg: "Forbidden" });
         }
@@ -228,21 +228,21 @@ export const changePasswordAdmin = async (req, res) => {
 };
 
 
-// Delete employee data
+// method untuk delete data Pegawai
 export const deleteDataPegawai = async (req, res) => {
     const pegawai = await DataPegawai.findOne({
         where: {
             id: req.params.id
         }
     });
-    if (!pegawai) return res.status(404).json({ msg: "Employee data not found" });
+    if (!pegawai) return res.status(404).json({ msg: "Data Pegawai tidak ditemukan" });
     try {
         await DataPegawai.destroy({
             where: {
                 id: pegawai.id
             }
         });
-        res.status(200).json({ msg: "Employee data deleted successfully" });
+        res.status(200).json({ msg: "Data Pegawai Berhasil di Hapus" });
     } catch (error) {
         res.status(400).json({ msg: error.message });
     }

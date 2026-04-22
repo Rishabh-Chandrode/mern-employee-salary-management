@@ -12,7 +12,7 @@ const DefaultDashboard = () => {
         const getDataPegawai = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:5000/employees/name/${user.nama_pegawai}`
+                    `http://localhost:5000/data_pegawai/name/${user.nama_pegawai}`
                 );
                 const data = response.data;
                 setDataPegawai(data);
@@ -52,12 +52,12 @@ const DefaultDashboard = () => {
                 <>
                     <div className="mt-6">
                         <h2 className="px-4 py-2 text-meta-3 font-medium text-center md:text-left">
-                            Welcome to SiPeKa. You are signed in as an employee.
+                            Selamat Datang di SiPeKa Anda Login Sebagai Pegawai.
                         </h2>
                     </div>
                     <div className="py-2 px-4 md:px-6 dark:border-strokedark text-lg">
                         <h3 className="font-medium text-black dark:text-white text-center md:text-left">
-                            Employee Details
+                            Data Pegawai
                         </h3>
                     </div>
                     <div className="flex flex-col md:flex-row rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-2">
@@ -75,16 +75,16 @@ const DefaultDashboard = () => {
                                     <span className="inline-block w-7">:</span>{dataPegawai.nik}
                                 </h2>
                                 <h2 className="font-medium mb-4 block text-black dark:text-white">
-                                    <span className="inline-block w-32 md:w-40">Employee Name</span>
+                                    <span className="inline-block w-32 md:w-40">Nama Pegawai</span>
                                     <span className="inline-block w-7">:</span>{' '}
                                     <span className="pl-[-10] md:pl-0"></span>{dataPegawai.nama_pegawai}
                                 </h2>
                                 <h2 className="font-medium mb-4 block text-black dark:text-white">
-                                    <span className="inline-block w-32 md:w-40">Join Date</span>
+                                    <span className="inline-block w-32 md:w-40">Tanggal Masuk</span>
                                     <span className="inline-block w-7">:</span>{dataPegawai.tanggal_masuk}
                                 </h2>
                                 <h2 className="font-medium mb-4 block text-black dark:text-white">
-                                    <span className="inline-block w-32 md:w-40">Position</span>
+                                    <span className="inline-block w-32 md:w-40">Jabatan</span>
                                     <span className="inline-block w-7">:</span>{dataPegawai.jabatan}
                                     <span className="pl-[-8] md:pl-0"></span>
                                 </h2>

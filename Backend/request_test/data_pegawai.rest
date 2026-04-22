@@ -79,22 +79,6 @@ DELETE   http://localhost:5000/data_pegawai/1
 ### Authentication ###
 ######################
 
-### Register Pegawai (Public)
-POST http://localhost:5000/register
-Content-Type: application/json
-
-{
-    "nik": "9988776655443322",
-    "nama_pegawai": "User Baru",
-    "username": "userbaru",
-    "password": "12345",
-    "confPassword": "12345",
-    "jenis_kelamin": "Laki-Laki",
-    "jabatan": "Operator Produksi",
-    "tanggal_masuk": "22-04-2026",
-    "status": "karyawan tetap"
-}
-
 ### Login Pegawai
 POST http://localhost:5000/login
 Content-Type: application/json

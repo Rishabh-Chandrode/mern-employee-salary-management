@@ -6,10 +6,10 @@ import dataJabatanReducer from './reducer/dataJabatanReducer';
 import dataKehadiranReucer from './reducer/dataKehadiranReducer';
 import dataPotonganReducer from './reducer/dataPotonganReducer';
 import dataGajiReducer from './reducer/dataGajiReducer';
-import absenceReportReducer from './reducer/laporanAbsensiReducer';
-import salaryReportReducer from './reducer/laporanGajiReducer';
-import salarySlipReducer from './reducer/slipGajiReducer';
-import changePasswordReducer from './reducer/ubahPasswordReducer';
+import laporanAbsensiReducer from './reducer/laporanAbsensiReducer';
+import laporanGajiReducer from './reducer/laporanGajiReducer';
+import slipGajiReducer from './reducer/slipGajiReducer';
+import ubahPasswordReducer from './reducer/ubahPasswordReducer';
 
 const store = configureStore({
     reducer: {
@@ -20,14 +20,10 @@ const store = configureStore({
         dataKehadiran: dataKehadiranReucer,
         dataPotongan: dataPotonganReducer,
         dataGaji: dataGajiReducer,
-        laporanAbsensi: absenceReportReducer,
-        laporanGaji: salaryReportReducer,
-        slipGaji: salarySlipReducer,
-        ubahPassword: changePasswordReducer,
-        absenceReport: absenceReportReducer,
-        salaryReport: salaryReportReducer,
-        salarySlip: salarySlipReducer,
-        changePassword: changePasswordReducer,
+        laporanAbsensi: laporanAbsensiReducer,
+        laporanGaji: laporanGajiReducer,
+        slipGaji: slipGajiReducer,
+        ubahPassword: ubahPasswordReducer,
     },
 });
 
