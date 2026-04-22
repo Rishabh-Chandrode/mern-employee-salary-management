@@ -3,7 +3,7 @@ import DataKehadiran from "../models/DataKehadiranModel.js";
 import { getDataGajiPegawai } from "./TransaksiController.js";
 import { verifyUser } from "../middleware/AuthUser.js";
 
-// method untuk dashboard pegawai
+// Employee dashboard
 export const dashboardPegawai = async (req, res) => {
     await verifyUser(req, res, () => {});
 
@@ -23,7 +23,7 @@ export const dashboardPegawai = async (req, res) => {
     res.status(200).json(response);
   };
 
-// method untuk view gaji single pegawai by month
+// View salary data for a single employee by month
 export const viewDataGajiSinglePegawaiByMonth = async (req, res) => {
   await verifyUser(req, res, () => {});
 
@@ -67,13 +67,13 @@ export const viewDataGajiSinglePegawaiByMonth = async (req, res) => {
           return res.json(dataGajiByMonth);
       }
 
-      res.status(404).json({ msg: `Data Gaji Untuk Bulan ${req.params.month} Tidak di Temukan Pada Pegawai ${user.nama_pegawai}` });
+      res.status(404).json({ msg: `Salary data for month ${req.params.month} was not found for employee ${user.nama_pegawai}` });
   } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
-// method untuk view gaji single pegawai by year
+// View salary data for a single employee by year
 export const viewDataGajiSinglePegawaiByYear = async (req, res) => {
   await verifyUser(req, res, () => {});
 
@@ -107,7 +107,7 @@ export const viewDataGajiSinglePegawaiByYear = async (req, res) => {
     });
 
     if (dataGajiByYear.length === 0) {
-        return res.status(404).json({ msg: `Data Tahun ${year} Tidak di Temukan` });
+        return res.status(404).json({ msg: `Data for year ${year} was not found` });
     }
     res.json(dataGajiByYear)
   } catch (error) {
@@ -115,4 +115,4 @@ export const viewDataGajiSinglePegawaiByYear = async (req, res) => {
   }
 }
 
-// data yang ditampilkan ( Bulan / Tahun, Gaji Pokok, tj_transport, Uang Makan, Potongan, Total Gaji  )
+// Data displayed: Month / Year, Base Salary, Transport Allowance, Meal Allowance, Deductions, Total Salary

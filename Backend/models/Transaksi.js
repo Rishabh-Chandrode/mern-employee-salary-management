@@ -2,7 +2,7 @@ import DataPegawai from './DataPegawaiModel.js';
 import DataJabatan from './DataJabatanModel.js';
 import DataKehadiran from './DataKehadiranModel.js';
 
-/* Method untuk mengambil Data Pegawai */
+/* Method to fetch Employee Data */
 
 async function getDataPegawai() {
     try {
@@ -28,7 +28,7 @@ async function getDataPegawai() {
     }
 }
 
-/* Method untuk mengambil Data Kehadiran */
+/* Method to fetch Attendance Data */
 
 async function getDataKehadiran() {
     try {
@@ -62,7 +62,7 @@ getDataKehadiran();
 
 
 
-/* Method untuk mengambil Data Pegawai */
+/* Method to fetch Position Data */
 
 async function getDataJabatan() {
     const dataJabatan = await DataJabatan.findAll();

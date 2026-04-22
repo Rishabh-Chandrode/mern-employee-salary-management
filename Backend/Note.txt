@@ -3,7 +3,7 @@
 // Admin Route :
 
 /* ==== Master Data ==== */
-// Data Pegawai
+// Employee Data
 router.get('/data_pegawai', verifyUser, adminOnly, getDataPegawai);
 router.get('/data_pegawai/id/:id', verifyUser, adminOnly, getDataPegawaiByID);
 router.get('/data_pegawai/nik/:nik', verifyUser, adminOnly, getDataPegawaiByNik);
@@ -12,43 +12,43 @@ router.post('/data_pegawai', createDataPegawai);
 router.patch('/data_pegawai/:id', verifyUser, adminOnly, updateDataPegawai);
 router.delete('/data_pegawai/:id', verifyUser, adminOnly, deleteDataPegawai);
 router.patch('/data_pegawai/:id/change_password',  verifyUser, adminOnly, changePasswordAdmin);
-// Data Jabatan
+// Position Data
 router.get('/data_jabatan', verifyUser, adminOnly, getDataJabatan);
 router.post('/data_jabatan', verifyUser, adminOnly, createDataJabatan);
 router.patch('/data_jabatan/:id', verifyUser,  adminOnly, updateDataJabatan);
 router.delete('/data_jabatan/:id', verifyUser, adminOnly, deleteDataJabatan);
 
-/* ==== Transaksi  ==== */
-// Data Kehadiran
+/* ==== Transactions ==== */
+// Attendance Data
 router.get('/data_kehadiran', verifyUser, adminOnly, viewDataKehadiran);
 router.post('/data_kehadiran', createDataKehadiran);
 router.patch('/data_kehadiran/update/:id', updateDataKehadiran);
 router.delete('/data_kehadiran/:id', verifyUser, adminOnly, deleteDataKehadiran);
-// Data Potongan
+// Deduction Data
 router.get('/data_potongan', adminOnly, verifyUser, viewDataPotongan);
 router.post('/data_potongan', adminOnly, verifyUser, createDataPotonganGaji);
 router.patch('/data_potongan/update/:id', adminOnly, verifyUser, updateDataPotongan);
 router.delete('/data_potongan/:id', adminOnly, verifyUser, deleteDataPotongan);
-// Data Gaji
+// Salary Data
 router.get('/data_gaji_pegawai', viewDataGajiPegawai);
 router.get('/data_gaji_pegawai/month/:month', viewDataGajiPegawaiByMonth);
 router.get('/data_gaji_pegawai/year/:year', viewDataGajiPegawaiByYear);
 
-/* ====  Laporan  ==== */
-// laporan Gaji Pegawai
+/* ==== Reports ==== */
+// Employee Salary Report
 router.get('/laporan/gaji', viewLaporanGajiPegawai);
 router.get('/laporan/gaji/name/:name', viewLaporanGajiPegawaiByName);
 router.get('/laporan/gaji/month/:month', viewLaporanGajiPegawaiByMonth);
 router.get('/laporan/gaji/year/:year', viewLaporanGajiPegawaiByYear);
-// Laporan Absensi Pegawai
+// Employee Attendance Report
 router.get('/laporan/absensi/month/:month', viewLaporanAbsensiPegawaiByMonth);
 router.get('/laporan/absensi/year/:year', viewLaporanAbsensiPegawaiByYear);
-// Slip Gaji Pegawai
+// Employee Salary Slip
 router.get('/laporan/slip_gaji/name/:name', viewSlipGajiByName);
 router.get('/laporan/slip_gaji/month/:month', viewSlipGajiByMonth);
 router.get('/laporan/slip_gaji/year/:year', viewSlipGajiByYear);
 
-/* ==== Ubah Password ==== */
+/* ==== Change Password ==== */
 router.patch('/change_password', verifyUser, changePassword);
 
 /* ==== Logout ==== */
@@ -56,16 +56,16 @@ router.delete('/logout', LogOut);
 
 
 
-// Pegawai Route :
+// Employee Route :
 /* ==== Dashboard ==== */
 router.get('/dashboard', verifyUser, dashboardPegawai);
-/* ==== Data Gaji ==== */
+/* ==== Salary Data ==== */
 router.get('/data_gaji/month/:month', verifyUser, viewDataGajiSinglePegawaiByMonth);
 router.get('/data_gaji/year/:year', verifyUser, viewDataGajiSinglePegawaiByYear);
-/* ==== Ubah Password ==== */
+/* ==== Change Password ==== */
 router.patch('/change_password', verifyUser, changePassword);
 /* ==== Logout ==== */
 router.delete('/logout', LogOut);
 
 
-** NOTE : Untuk versi 1, Backend telah selesai.
+** NOTE : For version 1, the backend is complete.

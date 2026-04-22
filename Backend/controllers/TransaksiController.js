@@ -3,7 +3,7 @@ import DataPegawai from "../models/DataPegawaiModel.js";
 import DataJabatan from "../models/DataJabatanModel.js";
 import PotonganGaji from "../models/PotonganGajiModel.js";
 import moment from "moment";
-import "moment/locale/id.js";
+import "moment/locale/en-gb.js";
 
 // Return all attendance data
 export const viewDataKehadiran = async (req, res) => {
@@ -134,7 +134,7 @@ export const createDataKehadiran = async (req, res) => {
     }
 
     if (!nama_sudah_ada) {
-      const month = moment().locale("id").format("MMMM");
+      const month = moment().locale("en").format("MMMM");
       await DataKehadiran.create({
         bulan: month.toLowerCase(),
         nik: nik,
@@ -290,11 +290,11 @@ export const getDataPegawai = async () => {
   return resultDataPegawai;
 };
 
-// method untuk mengambil data jabatan :
+// method to fetch position data:
 export const getDataJabatan = async () => {
   let resultDataJabatan = [];
   try {
-    // get data jabatan :
+    // get position data:
     const data_jabatan = await DataJabatan.findAll({
       attributes: ["nama_jabatan", "gaji_pokok", "tj_transport", "uang_makan"],
       distinct: true,
@@ -314,10 +314,10 @@ export const getDataJabatan = async () => {
   return resultDataJabatan;
 };
 
-// method untuk mengambil data kehadiran :
+// method to fetch attendance data:
 export const getDataKehadiran = async () => {
   try {
-    // Get data kehadiran
+    // Get attendance data
     const data_Kehadiran = await DataKehadiran.findAll({
       attributes: [
         "bulan",
@@ -364,7 +364,7 @@ export const getDataKehadiran = async () => {
 export const getDataPotongan = async () => {
   let resultDataPotongan = [];
   try {
-    // get data potongan :
+  // get deduction data:
     const data_potongan = await PotonganGaji.findAll({
       attributes: ["id", "potongan", "jml_potongan"],
       distinct: true,
@@ -382,10 +382,10 @@ export const getDataPotongan = async () => {
   return resultDataPotongan;
 };
 
-// Logika matematika
+// Calculate employee salary totals
 export const getDataGajiPegawai = async () => {
   try {
-    // Gaji Pegawai :
+    // Employee Salary:
     const resultDataPegawai = await getDataPegawai();
     const resultDataJabatan = await getDataJabatan();
 
@@ -410,7 +410,7 @@ export const getDataGajiPegawai = async () => {
         };
       });
 
-    // Potongan Pegawai :
+    // Employee Deductions:
     const resultDataKehadiran = await getDataKehadiran();
     const resultDataPotongan = await getDataPotongan();
 
@@ -438,7 +438,7 @@ export const getDataGajiPegawai = async () => {
       };
     });
 
-    // Total Gaji Pegawai :
+    // Employee Total Salary:
     const total_gaji_pegawai = gaji_pegawai.map((pegawai) => {
       const id = pegawai.id;
       const kehadiran = resultDataKehadiran.find(
@@ -476,7 +476,7 @@ export const getDataGajiPegawai = async () => {
   }
 };
 
-// method untuk melihat data gaji pegawai
+// method to view employee salary data
 export const viewDataGajiPegawai = async (req, res) => {
   try {
     const dataGajiPegawai = await getDataGajiPegawai();
@@ -516,7 +516,7 @@ export const viewDataGajiPegawaiByName = async (req, res) => {
       });
 
     if (dataGajiByName.length === 0) {
-      return res.status(404).json({ msg: 'Data tidak ditemukan' });
+      return res.status(404).json({ msg: 'Data not found' });
     }
     return res.json(dataGajiByName);
   } catch (error) {
@@ -525,7 +525,7 @@ export const viewDataGajiPegawaiByName = async (req, res) => {
 };
 
 
-// method untuk melihat data gaji pegawai berdasarkan ID
+// method to view employee salary data by ID
 export const viewDataGajiById = async (req, res) => {
   try {
     const dataGajiPegawai = await getDataGajiPegawai(req, res);
@@ -544,7 +544,7 @@ export const viewDataGajiById = async (req, res) => {
   }
 };
 
-// method untuk melihat data gaji pegawai berdasarkan Name
+// method to view employee salary data by Name
 export const viewDataGajiByName = async (req, res) => {
   try {
     const dataGajiPegawai = await getDataGajiPegawai(req, res);
@@ -570,7 +570,7 @@ export const viewDataGajiByName = async (req, res) => {
 
 
 
-// method untuk mencari data gaji pegawai berdasarkan bulan
+// method to search employee salary data by month
 export const viewDataGajiPegawaiByMonth = async (req, res) => {
   try {
     const dataGajiPegawai = await getDataGajiPegawai();
@@ -606,13 +606,13 @@ export const viewDataGajiPegawaiByMonth = async (req, res) => {
 
     res
       .status(404)
-      .json({ msg: `Data untuk bulan ${req.params.month} tidak ditemukan` });
+      .json({ msg: `Data for month ${req.params.month} was not found` });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-// method untuk mencari data gaji pegawai berdasarkan tahun
+// method to search employee salary data by year
 export const viewDataGajiPegawaiByYear = async (req, res) => {
   try {
     const dataGajiPegawai = await getDataGajiPegawai();
@@ -645,7 +645,7 @@ export const viewDataGajiPegawaiByYear = async (req, res) => {
     if (dataGajiByYear.length === 0) {
       return res
         .status(404)
-        .json({ msg: `Data tahun ${year} tidak ditemukan` });
+        .json({ msg: `Data for year ${year} was not found` });
     }
     res.json(dataGajiByYear);
   } catch (error) {
@@ -653,7 +653,7 @@ export const viewDataGajiPegawaiByYear = async (req, res) => {
   }
 };
 
-// method untuk mencari data gaji pegawai berdasarkan tahun
+// method to search salary report data by year
 export const dataLaporanGajiByYear = async (req, res) => {
   try {
     const dataGajiPegawai = await getDataGajiPegawai();
@@ -683,7 +683,7 @@ export const dataLaporanGajiByYear = async (req, res) => {
     if (dataGajiByYear.length === 0) {
       return res
         .status(404)
-        .json({ msg: `Data tahun ${year} tidak ditemukan` });
+        .json({ msg: `Data for year ${year} was not found` });
     } else {
       const laporanByYear = dataGajiByYear.map((data) => data.tahun)
       console.log(laporanByYear)
