@@ -17,9 +17,9 @@ const store = new sessionStore({
     db: db
 });
 
-/* (async() => {
+(async() => {
     await db.sync();
-})(); */
+})(); 
 
 dotenv.config();
 
@@ -48,8 +48,8 @@ app.use(express.static("public"));
 app.use(UserRoute);
 app.use(AuthRoute);
 
-// store.sync();
+store.sync();
 
 app.listen(process.env.APP_PORT, () => {
-    console.log('Server up and running...');
+    console.log('Server up and running...', process.env.APP_PORT);
 });
