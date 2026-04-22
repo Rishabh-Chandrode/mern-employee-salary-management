@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FiUser, FiLock } from 'react-icons/fi';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../../../config/redux/action';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 
 function LoginInput() {
   const [username, setUsername] = useState("");
@@ -87,6 +87,13 @@ function LoginInput() {
           className='w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90'
         />
       </div>
+
+      <p className='text-center text-sm text-black dark:text-white'>
+        Belum punya akun?{' '}
+        <Link to='/register' className='font-semibold text-primary'>
+          Daftar sekarang
+        </Link>
+      </p>
     </form>
   );
 }
